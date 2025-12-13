@@ -17,17 +17,21 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Validate mirror repository secret
+        run: |
+          if [ -z "${{ secrets.MIRROR_REPOSITORY }}" ]; then
+            echo "Error: MIRROR_REPOSITORY secret is not set"
+            echo "Please add a secret named MIRROR_REPOSITORY with the format: username/repo-name"
+            exit 1
+          fi
+
       - name: Configure git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Adding git remote
-        run: git remote add mirror https://github.com/${{ secrets.MIRROR_REPOSITORY }}.git
-
-      - name: Configure git credential helper
-        run: |
-          git config --local credential.helper '!f() { echo "username=x"; echo "password=${{ secrets.GITHUB_TOKEN }}"; }; f'
+        run: git remote add mirror https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ secrets.MIRROR_REPOSITORY }}.git
 
       - name: Renaming git branch
         run: git branch -m mirror
