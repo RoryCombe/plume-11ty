@@ -1,0 +1,26 @@
+body {
+  font-family: system-ui, sans-serif;
+  margin: 2rem auto;
+  max-width: 720px;
+  line-height: 1.6;
+}
+nav a {
+  margin-right: 1rem;
+}
+
+.post header {
+  margin-bottom: 1rem;
+}
+.post-meta {
+  color: #888;
+  font-size: 0.9em;
+}
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+.post-nav a {
+  color: #007acc;
+  text-decoration: none;
+}
