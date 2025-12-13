@@ -16,24 +16,21 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Unshallow the actions repo
-        run: git fetch --unshallow origin ${{ github.ref_name }}
-      
+
       - name: Configure git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-      
+
       - name: Adding git remote
         run: git remote add mirror https://github.com/${{ secrets.MIRROR_REPOSITORY }}.git
-      
+
       - name: Configure git credential helper
         run: |
           git config --local credential.helper '!f() { echo "username=x"; echo "password=${{ secrets.GITHUB_TOKEN }}"; }; f'
-      
+
       - name: Renaming git branch
         run: git branch -m mirror
-      
+
       - name: Pushing to git remote
         run: git push -f mirror
