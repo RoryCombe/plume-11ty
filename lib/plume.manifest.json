@@ -1,0 +1,427 @@
+{
+  "version": "1.0.0",
+  "name": "Plume Component Library",
+  "description": "A collection of web components for building config-driven pages",
+  "components": [
+    {
+      "name": "plume-hero-1",
+      "category": "hero",
+      "description": "Gradient hero section with title, subtitle, and CTA button",
+      "path": "lib/hero/plume-hero-1.js",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "default": "Default Title",
+          "description": "Main heading text"
+        },
+        {
+          "name": "subtitle",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "Subheading text displayed below the title"
+        },
+        {
+          "name": "ctaText",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "Text for the call-to-action button"
+        },
+        {
+          "name": "ctaLink",
+          "type": "string",
+          "required": false,
+          "default": "#",
+          "description": "URL for the call-to-action button"
+        }
+      ]
+    },
+    {
+      "name": "plume-hero-2",
+      "category": "hero",
+      "description": "Light background hero section with heading and description",
+      "path": "lib/hero/plume-hero-2.js",
+      "attributes": [
+        {
+          "name": "heading",
+          "type": "string",
+          "required": false,
+          "default": "Default Heading",
+          "description": "Main heading text"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "Description text displayed below the heading"
+        }
+      ]
+    },
+    {
+      "name": "plume-hero-3",
+      "category": "hero",
+      "description": "Split layout hero with content on one side and image on the other",
+      "path": "lib/hero/plume-hero-3.js",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "default": "Default Title",
+          "description": "Main heading text"
+        },
+        {
+          "name": "subtitle",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "Subheading text displayed below the title"
+        },
+        {
+          "name": "imageUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "URL of the image to display"
+        }
+      ]
+    },
+    {
+      "name": "plume-nav-1",
+      "category": "nav",
+      "description": "White navigation bar with shadow, brand, and links",
+      "path": "lib/nav/plume-nav-1.js",
+      "attributes": [
+        {
+          "name": "brand",
+          "type": "string",
+          "required": false,
+          "default": "Brand",
+          "description": "Brand/logo text"
+        },
+        {
+          "name": "links",
+          "type": "array",
+          "required": false,
+          "default": "[]",
+          "description": "Array of navigation links (JSON string)",
+          "complexType": "NavLink"
+        }
+      ]
+    },
+    {
+      "name": "plume-nav-2",
+      "category": "nav",
+      "description": "Gradient navigation bar with brand, links, and CTA button",
+      "path": "lib/nav/plume-nav-2.js",
+      "attributes": [
+        {
+          "name": "brand",
+          "type": "string",
+          "required": false,
+          "default": "Brand",
+          "description": "Brand/logo text"
+        },
+        {
+          "name": "links",
+          "type": "array",
+          "required": false,
+          "default": "[]",
+          "description": "Array of navigation links (JSON string)",
+          "complexType": "NavLink"
+        },
+        {
+          "name": "ctaText",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "Text for the call-to-action button"
+        },
+        {
+          "name": "ctaLink",
+          "type": "string",
+          "required": false,
+          "default": "#",
+          "description": "URL for the call-to-action button"
+        }
+      ]
+    },
+    {
+      "name": "plume-nav-3",
+      "category": "nav",
+      "description": "Dark navigation bar with uppercase links",
+      "path": "lib/nav/plume-nav-3.js",
+      "attributes": [
+        {
+          "name": "brand",
+          "type": "string",
+          "required": false,
+          "default": "Brand",
+          "description": "Brand/logo text"
+        },
+        {
+          "name": "links",
+          "type": "array",
+          "required": false,
+          "default": "[]",
+          "description": "Array of navigation links (JSON string)",
+          "complexType": "NavLink"
+        }
+      ]
+    },
+    {
+      "name": "plume-pricing-1",
+      "category": "pricing",
+      "description": "Card-based pricing layout with white cards",
+      "path": "lib/pricing/plume-pricing-1.js",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "default": "Pricing",
+          "description": "Section heading"
+        },
+        {
+          "name": "plans",
+          "type": "array",
+          "required": false,
+          "default": "[]",
+          "description": "Array of pricing plans (JSON string)",
+          "complexType": "PricingPlan"
+        }
+      ]
+    },
+    {
+      "name": "plume-pricing-2",
+      "category": "pricing",
+      "description": "Gradient pricing cards with featured plan option",
+      "path": "lib/pricing/plume-pricing-2.js",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "default": "Pricing",
+          "description": "Section heading"
+        },
+        {
+          "name": "plans",
+          "type": "array",
+          "required": false,
+          "default": "[]",
+          "description": "Array of pricing plans (JSON string)",
+          "complexType": "PricingPlan"
+        }
+      ]
+    },
+    {
+      "name": "plume-pricing-3",
+      "category": "pricing",
+      "description": "Dark theme side-by-side pricing layout",
+      "path": "lib/pricing/plume-pricing-3.js",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "default": "Pricing",
+          "description": "Section heading"
+        },
+        {
+          "name": "plans",
+          "type": "array",
+          "required": false,
+          "default": "[]",
+          "description": "Array of pricing plans (JSON string)",
+          "complexType": "PricingPlan"
+        }
+      ]
+    },
+    {
+      "name": "plume-features-1",
+      "category": "features",
+      "description": "Grid layout features with icons, titles, and descriptions",
+      "path": "lib/features/plume-features-1.js",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "default": "Features",
+          "description": "Section heading"
+        },
+        {
+          "name": "features",
+          "type": "array",
+          "required": false,
+          "default": "[]",
+          "description": "Array of features (JSON string)",
+          "complexType": "Feature"
+        }
+      ]
+    },
+    {
+      "name": "plume-features-2",
+      "category": "features",
+      "description": "List layout features with icons on the left",
+      "path": "lib/features/plume-features-2.js",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "default": "Features",
+          "description": "Section heading"
+        },
+        {
+          "name": "features",
+          "type": "array",
+          "required": false,
+          "default": "[]",
+          "description": "Array of features (JSON string)",
+          "complexType": "Feature"
+        }
+      ]
+    },
+    {
+      "name": "plume-features-3",
+      "category": "features",
+      "description": "Glassmorphism cards with gradient background",
+      "path": "lib/features/plume-features-3.js",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "default": "Features",
+          "description": "Section heading"
+        },
+        {
+          "name": "features",
+          "type": "array",
+          "required": false,
+          "default": "[]",
+          "description": "Array of features (JSON string)",
+          "complexType": "Feature"
+        }
+      ]
+    }
+  ],
+  "complexTypes": {
+    "NavLink": {
+      "description": "Navigation link object",
+      "properties": [
+        {
+          "name": "label",
+          "type": "string",
+          "required": true,
+          "description": "Link text"
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "required": true,
+          "description": "Link URL"
+        }
+      ]
+    },
+    "PricingPlan": {
+      "description": "Pricing plan object",
+      "properties": [
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "description": "Plan name"
+        },
+        {
+          "name": "price",
+          "type": "string",
+          "required": true,
+          "description": "Plan price (as string, e.g., '29')"
+        },
+        {
+          "name": "period",
+          "type": "string",
+          "required": false,
+          "default": "/month",
+          "description": "Billing period (e.g., '/month', '/year')"
+        },
+        {
+          "name": "features",
+          "type": "array",
+          "required": false,
+          "description": "Array of feature strings"
+        },
+        {
+          "name": "buttonText",
+          "type": "string",
+          "required": false,
+          "default": "Get Started",
+          "description": "Text for the plan button"
+        },
+        {
+          "name": "link",
+          "type": "string",
+          "required": false,
+          "default": "#",
+          "description": "URL for the plan button"
+        },
+        {
+          "name": "featured",
+          "type": "boolean",
+          "required": false,
+          "default": false,
+          "description": "Whether this plan is featured (only for pricing-2 and pricing-3)"
+        }
+      ]
+    },
+    "Feature": {
+      "description": "Feature object",
+      "properties": [
+        {
+          "name": "icon",
+          "type": "string",
+          "required": false,
+          "default": "✨",
+          "description": "Icon emoji or character"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "description": "Feature title"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": true,
+          "description": "Feature description"
+        }
+      ]
+    }
+  },
+  "categories": [
+    {
+      "name": "hero",
+      "description": "Hero sections for landing pages"
+    },
+    {
+      "name": "nav",
+      "description": "Navigation bars and menus"
+    },
+    {
+      "name": "pricing",
+      "description": "Pricing tables and plans"
+    },
+    {
+      "name": "features",
+      "description": "Feature lists and showcases"
+    }
+  ]
+}

@@ -1,7 +1,21 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 export default function (eleventyConfig) {
   // ✅ Pass assets and CNAME through
   eleventyConfig.addPassthroughCopy('src/assets');
   eleventyConfig.addPassthroughCopy('src/CNAME', { errorOnMissing: false });
+
+  // ✅ Pass lib folder through for web components
+  eleventyConfig.addPassthroughCopy('lib');
+
+  // ✅ Watch plume.json and lib folder for changes (triggers rebuild in dev mode)
+  eleventyConfig.addWatchTarget('plume.json');
+  eleventyConfig.addWatchTarget('lib');
 
   // ✅ Simple date filter
   eleventyConfig.addFilter('date', (value, format = 'year') => {
@@ -20,6 +34,25 @@ export default function (eleventyConfig) {
       default:
         return date.toString();
     }
+  });
+
+  // ✅ Convert camelCase to kebab-case for HTML attributes
+  eleventyConfig.addFilter('kebabCase', (str) => {
+    return str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase();
+  });
+
+  // ✅ Get component path based on component name
+  eleventyConfig.addFilter('componentPath', (componentName) => {
+    if (componentName.startsWith('plume-hero')) {
+      return `/lib/hero/${componentName}.js`;
+    } else if (componentName.startsWith('plume-nav')) {
+      return `/lib/nav/${componentName}.js`;
+    } else if (componentName.startsWith('plume-pricing')) {
+      return `/lib/pricing/${componentName}.js`;
+    } else if (componentName.startsWith('plume-features')) {
+      return `/lib/features/${componentName}.js`;
+    }
+    return `/lib/${componentName}.js`;
   });
 
   // ✅ Derive base URL dynamically
@@ -41,6 +74,9 @@ export default function (eleventyConfig) {
     name: 'My Eleventy Template',
     baseUrl,
   });
+
+  // Note: plume config is now loaded via src/_data/plume.js
+  // This allows Eleventy to automatically watch and reload it
 
   // ✅ Posts collection
   eleventyConfig.addCollection('posts', (collection) => collection.getFilteredByGlob('src/posts/*.md').reverse());
