@@ -42,17 +42,29 @@ export default function (eleventyConfig) {
   });
 
   // ✅ Get component path based on component name
-  eleventyConfig.addFilter('componentPath', (componentName) => {
+  eleventyConfig.addFilter('componentPath', (componentName, baseUrl = '') => {
+    let path = '';
     if (componentName.startsWith('plume-hero')) {
-      return `/lib/hero/${componentName}.js`;
+      path = `/lib/hero/${componentName}.js`;
     } else if (componentName.startsWith('plume-nav')) {
-      return `/lib/nav/${componentName}.js`;
+      path = `/lib/nav/${componentName}.js`;
     } else if (componentName.startsWith('plume-pricing')) {
-      return `/lib/pricing/${componentName}.js`;
+      path = `/lib/pricing/${componentName}.js`;
     } else if (componentName.startsWith('plume-features')) {
-      return `/lib/features/${componentName}.js`;
+      path = `/lib/features/${componentName}.js`;
+    } else {
+      path = `/lib/${componentName}.js`;
     }
-    return `/lib/${componentName}.js`;
+
+    // Prepend baseUrl if provided and not root
+    if (baseUrl && baseUrl !== '/' && baseUrl.trim() !== '') {
+      // Ensure baseUrl has trailing slash, then append path without leading slash
+      const base = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+      const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+      return `${base}${cleanPath}`;
+    }
+
+    return path;
   });
 
   // ✅ Derive base URL dynamically

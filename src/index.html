@@ -31,7 +31,7 @@ title: Plume
 
   <!-- Load web components dynamically based on config -->
   {% for block in plume.pages.index.blocks %}
-  <script type="module" src="{{ block.component | componentPath }}"></script>
+  <script type="module" src="{{ block.component | componentPath(site.baseUrl) }}"></script>
   {% endfor %}
 </body>
 

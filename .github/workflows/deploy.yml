@@ -42,6 +42,7 @@ jobs:
         env:
           ELEVENTY_ENV: production
           GITHUB_REPOSITORY: ${{ github.repository }}
+          BASEURL: /${{ github.event.repository.name }}/
         run: pnpm run build
 
       - name: Upload artifact
