@@ -41,6 +41,19 @@ export default function (eleventyConfig) {
     return str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase();
   });
 
+  // ✅ Stringify arrays/objects for HTML attributes, leave strings as-is
+  eleventyConfig.addFilter('attrValue', (value) => {
+    if (value === null || value === undefined) {
+      return '';
+    }
+    // If it's an array or object, stringify it
+    if (Array.isArray(value) || (typeof value === 'object' && value.constructor === Object)) {
+      return JSON.stringify(value);
+    }
+    // Otherwise, return as string
+    return String(value);
+  });
+
   // ✅ Get component path based on component name
   eleventyConfig.addFilter('componentPath', (componentName, baseUrl = '') => {
     let path = '';
@@ -52,6 +65,8 @@ export default function (eleventyConfig) {
       path = `/lib/pricing/${componentName}.js`;
     } else if (componentName.startsWith('plume-features')) {
       path = `/lib/features/${componentName}.js`;
+    } else if (componentName.startsWith('plume-logo-cloud')) {
+      path = `/lib/logo-clouds/${componentName}.js`;
     } else {
       path = `/lib/${componentName}.js`;
     }

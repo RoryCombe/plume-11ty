@@ -7,7 +7,20 @@
           "component": "plume-nav-2",
           "props": {
             "brand": "Plume CMS",
-            "links": "[{\"label\": \"Features\", \"url\": \"#features\"}, {\"label\": \"Pricing\", \"url\": \"#pricing\"}, {\"label\": \"Docs\", \"url\": \"#docs\"}]",
+            "links": [
+              {
+                "label": "Features",
+                "url": "#features"
+              },
+              {
+                "label": "Pricing",
+                "url": "#pricing"
+              },
+              {
+                "label": "Docs",
+                "url": "#docs"
+              }
+            ],
             "ctaText": "Get Started",
             "ctaLink": "#"
           }
@@ -25,14 +38,84 @@
           "component": "plume-features-1",
           "props": {
             "title": "Powerful Features",
-            "features": "[{\"icon\": \"⚡\", \"title\": \"Lightning Fast\", \"description\": \"Build pages in seconds with our config-driven approach\"}, {\"icon\": \"🎨\", \"title\": \"Beautiful Components\", \"description\": \"Pre-built components that look great out of the box\"}, {\"icon\": \"🔧\", \"title\": \"Easy to Customize\", \"description\": \"Simple JSON config makes it easy to customize your pages\"}, {\"icon\": \"📱\", \"title\": \"Fully Responsive\", \"description\": \"All components are mobile-first and responsive\"}, {\"icon\": \"🚀\", \"title\": \"Production Ready\", \"description\": \"Built with Eleventy for fast, static site generation\"}, {\"icon\": \"💎\", \"title\": \"Modern Stack\", \"description\": \"Uses web components and modern JavaScript\"}]"
+            "features": [
+              {
+                "icon": "⚡",
+                "title": "Lightning Fast",
+                "description": "Build pages in seconds with our config-driven approach"
+              },
+              {
+                "icon": "🎨",
+                "title": "Beautiful Components",
+                "description": "Pre-built components that look great out of the box"
+              },
+              {
+                "icon": "🔧",
+                "title": "Easy to Customize",
+                "description": "Simple JSON config makes it easy to customize your pages"
+              },
+              {
+                "icon": "📱",
+                "title": "Fully Responsive",
+                "description": "All components are mobile-first and responsive"
+              },
+              {
+                "icon": "🚀",
+                "title": "Production Ready",
+                "description": "Built with Eleventy for fast, static site generation"
+              },
+              {
+                "icon": "💎",
+                "title": "Modern Stack",
+                "description": "Uses web components and modern JavaScript"
+              }
+            ]
           }
         },
         {
           "component": "plume-pricing-1",
           "props": {
             "title": "Simple Pricing",
-            "plans": "[{\"name\": \"Starter\", \"price\": \"9\", \"period\": \"/month\", \"features\": [\"Up to 10 pages\", \"Basic components\", \"Community support\"], \"buttonText\": \"Start Free Trial\", \"link\": \"#\"}, {\"name\": \"Pro\", \"price\": \"29\", \"period\": \"/month\", \"features\": [\"Unlimited pages\", \"All components\", \"Priority support\", \"Custom components\"], \"buttonText\": \"Get Started\", \"link\": \"#\"}, {\"name\": \"Enterprise\", \"price\": \"99\", \"period\": \"/month\", \"features\": [\"Everything in Pro\", \"Dedicated support\", \"Custom integrations\", \"SLA guarantee\"], \"buttonText\": \"Contact Sales\", \"link\": \"#\"}]"
+            "plans": [
+              {
+                "name": "Starter",
+                "price": "9",
+                "period": "/month",
+                "features": [
+                  "Up to 10 pages",
+                  "Basic components",
+                  "Community support"
+                ],
+                "buttonText": "Start Free Trial",
+                "link": "#"
+              },
+              {
+                "name": "Pro",
+                "price": "29",
+                "period": "/month",
+                "features": [
+                  "Unlimited pages",
+                  "All components",
+                  "Priority support",
+                  "Custom components"
+                ],
+                "buttonText": "Get Started",
+                "link": "#"
+              },
+              {
+                "name": "Enterprise",
+                "price": "99",
+                "period": "/month",
+                "features": [
+                  "Everything in Pro",
+                  "Dedicated support",
+                  "Custom integrations",
+                  "SLA guarantee"
+                ],
+                "buttonText": "Contact Sales",
+                "link": "#"
+              }
+            ]
           }
         },
         {
