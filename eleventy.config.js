@@ -1,10 +1,3 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 export default function (eleventyConfig) {
   // ✅ Pass assets and CNAME through
   eleventyConfig.addPassthroughCopy('src/assets');
@@ -54,32 +47,29 @@ export default function (eleventyConfig) {
     return String(value);
   });
 
-  // ✅ Get component path based on component name
-  eleventyConfig.addFilter('componentPath', (componentName, baseUrl = '') => {
-    let path = '';
+  // ✅ Get component path based on component name (from UNPKG CDN)
+  eleventyConfig.addFilter('componentPath', (componentName, versionOrBaseUrl = 'latest') => {
+    // If versionOrBaseUrl looks like a baseUrl (starts with /), ignore it and use 'latest'
+    const version = versionOrBaseUrl && versionOrBaseUrl.startsWith('/') ? 'latest' : versionOrBaseUrl || 'latest';
+
+    // Determine the file path based on component type
+    let filePath = '';
     if (componentName.startsWith('plume-hero')) {
-      path = `/lib/hero/${componentName}.js`;
+      filePath = `dist/hero/${componentName}.mjs`;
     } else if (componentName.startsWith('plume-nav')) {
-      path = `/lib/nav/${componentName}.js`;
+      filePath = `dist/nav/${componentName}.mjs`;
     } else if (componentName.startsWith('plume-pricing')) {
-      path = `/lib/pricing/${componentName}.js`;
+      filePath = `dist/pricing/${componentName}.mjs`;
     } else if (componentName.startsWith('plume-features')) {
-      path = `/lib/features/${componentName}.js`;
+      filePath = `dist/features/${componentName}.mjs`;
     } else if (componentName.startsWith('plume-logo-cloud')) {
-      path = `/lib/logo-clouds/${componentName}.js`;
+      filePath = `dist/logo-clouds/${componentName}.mjs`;
     } else {
-      path = `/lib/${componentName}.js`;
+      filePath = `dist/${componentName}.mjs`;
     }
 
-    // Prepend baseUrl if provided and not root
-    if (baseUrl && baseUrl !== '/' && baseUrl.trim() !== '') {
-      // Ensure baseUrl has trailing slash, then append path without leading slash
-      const base = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
-      const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-      return `${base}${cleanPath}`;
-    }
-
-    return path;
+    // Return UNPKG CDN URL
+    return `https://unpkg.com/plume-components@${version}/${filePath}`;
   });
 
   // ✅ Derive base URL dynamically
