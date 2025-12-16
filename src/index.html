@@ -25,13 +25,29 @@ title: Plume
 
 <body>
   {% for block in plume.pages.index.blocks %}
-  <{{ block.component }}{% for key, value in block.props %} {{ key | kebabCase }}="{{ value }}" {% endfor %}></{{
-    block.component }}>
+  <{{ block.component }}{% for key, value in block.props %} {{ key | kebabCase }}="{{ value | attrValue }}" {% endfor
+    %}></{{ block.component }}>
   {% endfor %}
 
-  <!-- Load web components dynamically based on config -->
+  <!-- Load web components dynamically based on config with fallback -->
+  <script>
+    function loadComponentWithFallback(primaryUrl, fallbackUrl) {
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.src = primaryUrl;
+      script.onerror = function () {
+        script.src = fallbackUrl;
+      };
+      document.head.appendChild(script);
+    }
+  </script>
   {% for block in plume.pages.index.blocks %}
-  <script type="module" src="{{ block.component | componentPath }}"></script>
+  <script>
+    loadComponentWithFallback(
+      '{{ block.component | componentPath }}',
+      '{{ block.component | componentFallbackPath }}'
+    );
+  </script>
   {% endfor %}
 </body>
 

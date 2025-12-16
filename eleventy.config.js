@@ -40,6 +40,7 @@ export default function (eleventyConfig) {
       return '';
     }
     // If it's an array or object, stringify it
+    // Nunjucks will automatically escape HTML entities when outputting
     if (Array.isArray(value) || (typeof value === 'object' && value.constructor === Object)) {
       return JSON.stringify(value);
     }
@@ -53,6 +54,14 @@ export default function (eleventyConfig) {
     const version = versionOrBaseUrl && versionOrBaseUrl.startsWith('/') ? 'latest' : versionOrBaseUrl || 'latest';
     // Return UNPKG CDN URL
     return `https://unpkg.com/plume-components@${version}/${componentName}.js`;
+  });
+
+  // ✅ Get fallback component path from jsdelivr CDN
+  eleventyConfig.addFilter('componentFallbackPath', (componentName, versionOrBaseUrl = 'latest') => {
+    // If versionOrBaseUrl looks like a baseUrl (starts with /), ignore it and use 'latest'
+    const version = versionOrBaseUrl && versionOrBaseUrl.startsWith('/') ? 'latest' : versionOrBaseUrl || 'latest';
+    // Return jsdelivr CDN URL as fallback
+    return `https://cdn.jsdelivr.net/npm/plume-components@${version}/${componentName}.js`;
   });
 
   // ✅ Derive base URL dynamically
