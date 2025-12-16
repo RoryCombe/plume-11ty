@@ -51,25 +51,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter('componentPath', (componentName, versionOrBaseUrl = 'latest') => {
     // If versionOrBaseUrl looks like a baseUrl (starts with /), ignore it and use 'latest'
     const version = versionOrBaseUrl && versionOrBaseUrl.startsWith('/') ? 'latest' : versionOrBaseUrl || 'latest';
-
-    // Determine the file path based on component type
-    let filePath = '';
-    if (componentName.startsWith('plume-hero')) {
-      filePath = `dist/hero/${componentName}.mjs`;
-    } else if (componentName.startsWith('plume-nav')) {
-      filePath = `dist/nav/${componentName}.mjs`;
-    } else if (componentName.startsWith('plume-pricing')) {
-      filePath = `dist/pricing/${componentName}.mjs`;
-    } else if (componentName.startsWith('plume-features')) {
-      filePath = `dist/features/${componentName}.mjs`;
-    } else if (componentName.startsWith('plume-logo-cloud')) {
-      filePath = `dist/logo-clouds/${componentName}.mjs`;
-    } else {
-      filePath = `dist/${componentName}.mjs`;
-    }
-
     // Return UNPKG CDN URL
-    return `https://unpkg.com/plume-components@${version}/${filePath}`;
+    return `https://unpkg.com/plume-components@${version}/${componentName}.js`;
   });
 
   // ✅ Derive base URL dynamically
